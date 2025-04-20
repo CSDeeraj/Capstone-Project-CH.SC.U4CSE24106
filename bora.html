@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bora Bora Escape | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #ff7e5f;
+            --secondary: #feb47b; 
+            --accent: #6a11cb; 
+            --dark: #2c3e50;
+            --light: #f8f9fa; 
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        
+        .ocean {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: -1;
+        }
+
+        .wave {
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="rgba(255,255,255,0.2)"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="rgba(255,255,255,0.3)"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="rgba(255,255,255,0.4)"/></svg>');
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            animation: wave 10s linear infinite;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: 0;
+            animation: wave 15s linear reverse infinite;
+            opacity: 0.7;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: 0;
+            animation: wave 20s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        
+        .bird {
+            position: absolute;
+            z-index: -1;
+            font-size: 24px;
+            animation: fly linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateX(-100px) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(calc(50vw - 50px)) translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Rest of your existing styles... */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-style: italic;
+            animation: fadeIn 2s ease;
+        }
+
+        .itinerary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .itinerary-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: none;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeIn 0.8s ease forwards;
+            animation-delay: calc(var(--order) * 0.2s);
+        }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .itinerary-card:nth-child(1) { --order: 1; }
+        .itinerary-card:nth-child(2) { --order: 2; }
+        .itinerary-card:nth-child(3) { --order: 3; }
+
+        .itinerary-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .itinerary-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--primary);
+            transition: transform 0.5s ease;
+        }
+
+        .itinerary-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .itinerary-card h3 {
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .itinerary-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            font-size: 0.9rem;
+            color: var(--dark);
+            background: rgba(248, 249, 250, 0.8);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .btn {
+            display: block;
+            width: calc(100% - 40px);
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 14px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(106, 17, 203, 0.4);
+        }
+
+      
+        .palm-tree {
+            position: fixed;
+            bottom: -50px;
+            right: -50px;
+            font-size: 200px;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: rotate(15deg);
+        }
+
+       
+        .floating {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        
+        [data-scroll] {
+            opacity: 0;
+            transition: opacity 1s, transform 1s;
+        }
+
+        [data-scroll="in"] {
+            opacity: 1;
+            transform: translateY(0) !important;
+        }
+
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+          
+            .ocean {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="ocean">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    
+    
+    <div class="bird" style="top: 15%; animation-duration: 25s; animation-delay: 0s;">🦜</div>
+    <div class="bird" style="top: 25%; animation-duration: 30s; animation-delay: 5s;">🦅</div>
+    <div class="bird" style="top: 10%; animation-duration: 20s; animation-delay: 10s;">🦢</div>
+    
+    <div class="palm-tree">🌴</div>
+    
+    
+    <div class="floating" style="width: 100px; height: 100px; top: 20%; left: 10%;"></div>
+    <div class="floating" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 0.5s;"></div>
+    <div class="floating" style="width: 80px; height: 80px; top: 30%; left: 70%; animation-delay: 1s;"></div>
+
+    <div class="container" data-scroll>
+        <h1>Welcome to Bora Bora</h1>
+        <p class="subtitle">Experience the Pearl of the Pacific</p>
+
+        <div class="itinerary-container">
+            <div class="itinerary-card" data-scroll>
+                <img src="snork.jpg" alt="Lagoon Experience">
+                <div class="card-content">
+                    <h3>Lagoon Snorkeling Adventure</h3>
+                    <p>Swim with tropical fish and explore coral gardens in Bora Bora's stunning lagoon.</p>
+                    <div class="details">
+                        <strong>Hotel:</strong> Azure Lagoon Resort<br>
+                        <strong>Cruise:</strong> Blue Lagoon Adventures<br>
+                        <strong>Travel Agency:</strong> Elite Escape Travels
+                    </div>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card" data-scroll>
+                <img src="overwater.jpg" alt="Luxury Stay">
+                <div class="card-content">
+                    <h3>Overwater Bungalow Retreat</h3>
+                    <p>Stay in a luxurious bungalow with glass floors over the crystal-clear waters.</p>
+                    <div class="details">
+                        <strong>Hotel:</strong> Paradise Pearl Hotel<br>
+                        <strong>Cruise:</strong> Tahiti Dream Voyages<br>
+                        <strong>Travel Agency:</strong> Pacific Getaways
+                    </div>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card" data-scroll>
+                <img src="sunset.jpg" alt="Sunset Cruise">
+                <div class="card-content">
+                    <h3>Romantic Sunset Cruise</h3>
+                    <p>Enjoy a breathtaking sunset cruise with a private dinner on the water.</p>
+                    <div class="details">
+                        <strong>Hotel:</strong> Sunset Serenity Resort<br>
+                        <strong>Cruise:</strong> Bora Romance Cruises<br>
+                        <strong>Travel Agency:</strong> Luxe Island Travels
+                    </div>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple scroll animation implementation
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.setAttribute('data-scroll', 'in');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize - check elements on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimation();
+            
+            // Create additional random birds
+            for (let i = 0; i < 3; i++) {
+                createBird();
+            }
+        });
+
+        
+        function createBird() {
+            const bird = document.createElement('div');
+            bird.className = 'bird';
+            bird.innerHTML = ['🦜', '🦅', '🦢', '🐦'][Math.floor(Math.random() * 4)];
+            
+           
+            const size = Math.random() * 20 + 15;
+            const duration = Math.random() * 20 + 15;
+            const delay = Math.random() * 15;
+            const top = Math.random() * 50 + 5;
+            
+            bird.style.cssText = `
+                top: ${top}%;
+                font-size: ${size}px;
+                animation-duration: ${duration}s;
+                animation-delay: ${delay}s;
+                left: -50px;
+            `;
+            
+            document.body.appendChild(bird);
+            
+            
+            setTimeout(() => {
+                bird.remove();
+                
+                setTimeout(createBird, Math.random() * 5000);
+            }, duration * 1000);
+        }
+    </script>
+</body>
+</html>

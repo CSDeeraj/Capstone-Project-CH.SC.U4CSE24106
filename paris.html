@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paris Travel Guide | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6d4c41;
+            --secondary: #d81b60;
+            --accent: #3949ab;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --success: #43a047;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: #f9f5f0;
+            line-height: 1.6;
+        }
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .intro-text {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--dark);
+        }
+        
+        .itinerary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .itinerary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .itinerary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .itinerary-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .itinerary-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        .itinerary-card h3 {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        
+        .itinerary-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .hotel-name {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success);
+            margin: 15px 0;
+            display: block;
+        }
+        
+        label {
+            font-size: 1rem;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            color: #555;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(57, 73, 171, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .card-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .intro-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="parisback.mp4" type="video/mp4">
+            <img src="paris-fallback.jpg" alt="Paris Background" style="width:100%;height:100%;object-fit:cover;">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to Paris</h1>
+        <p class="intro-text">Experience the magic of the City of Love! From the iconic Eiffel Tower to the world-famous Louvre Museum, Paris offers an unforgettable blend of romance, history, and culinary adventure. Let us craft your perfect Parisian getaway.</p>
+        
+        <div class="itinerary-container">
+            <div class="itinerary-card">
+                <img src="eiffel.jpg" alt="Eiffel Tower">
+                <h3>Eiffel Tower Experience</h3>
+                <p>Stay at <span class="hotel-name">Hotel Baguette</span>, enjoy fine dining at Michelin-starred restaurants, and witness breathtaking views from the summit of the Iron Lady.</p>
+                <div class="card-footer">
+                    <span class="tag">Romantic</span>
+                    <span class="tag">Luxury</span>
+                    <span class="price">From $4000</span>
+                    <label for="days1">Duration:</label>
+                    <select id="days1">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="window.location.href='login.html'">Book This Experience</button>
+                </div>
+            </div>
+            
+            <div class="itinerary-card">
+                <img src="louvre.jpg" alt="Louvre Museum">
+                <h3>Louvre & Seine River Cruise</h3>
+                <p>Stay at <span class="hotel-name">Grand Paris Hotel</span>, explore the world's largest art museum and enjoy a magical evening cruise along the Seine River.</p>
+                <div class="card-footer">
+                    <span class="tag">Cultural</span>
+                    <span class="tag">Family</span>
+                    <span class="price">From $3200</span>
+                    <label for="days2">Duration:</label>
+                    <select id="days2">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="window.location.href='login.html'">Book This Experience</button>
+                </div>
+            </div>
+            
+            <div class="itinerary-card">
+                <img src="notre.jpg" alt="Notre Dame">
+                <h3>Notre-Dame & Montmartre</h3>
+                <p>Stay at <span class="hotel-name">Cathedral View Inn</span>, visit the majestic Notre-Dame Cathedral and explore Montmartre's charming art district.</p>
+                <div class="card-footer">
+                    <span class="tag">Historic</span>
+                    <span class="tag">Artistic</span>
+                    <span class="price">From $2900</span>
+                    <label for="days3">Duration:</label>
+                    <select id="days3">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="window.location.href='login.html'">Book This Experience</button>
+                </div>
+            </div>
+            
+            <div class="itinerary-card">
+                <img src="arc.jpg" alt="Arc de Triomphe">
+                <h3>Champs-Élysées & Arc de Triomphe</h3>
+                <p>Stay at <span class="hotel-name">Luxury Champs Hotel</span>, shop along the famous avenue and visit the monumental Arc de Triomphe at sunset.</p>
+                <div class="card-footer">
+                    <span class="tag">Shopping</span>
+                    <span class="tag">Iconic</span>
+                    <span class="price">From $3500</span>
+                    <label for="days4">Duration:</label>
+                    <select id="days4">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="window.location.href='login.html'">Book This Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        });
+
+        const video = document.querySelector('.video-background video');
+        if (video) {
+            video.addEventListener('error', function() {
+                const fallbackImage = this.parentElement.querySelector('img');
+                if (fallbackImage) {
+                    this.style.display = 'none';
+                    fallbackImage.style.display = 'block';
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.itinerary-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

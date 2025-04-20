@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York City Travel Guide | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0038a8;
+            --secondary: #ff6319;
+            --accent: #fccc0a;
+            --light: #f5f5f5;
+            --dark: #1a1a1a;
+            --success: #00aa6c;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            background-image: url('city.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            border-top: 5px solid var(--secondary);
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--dark);
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .package-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .package-content {
+            padding: 1.5rem;
+        }
+
+        .package-title {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+        }
+
+        .package-price {
+            font-weight: bold;
+            color: var(--success);
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+        }
+
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to New York City</h1>
+        <p class="intro-text">Experience the energy, diversity, and iconic landmarks of America's most vibrant metropolis. From Broadway to Brooklyn, we'll show you the real NYC.</p>
+
+        <div class="packages">
+            <div class="package-card">
+                <img src="liberty.jpg" alt="Statue of Liberty" class="package-image">
+                <div class="package-content">
+                    <h3 class="package-title">Statue of Liberty & Ellis Island</h3>
+                    <p>Stay at <b>Liberty View Hotel</b> with harbor views. Includes early-access tickets to the crown and guided museum tours.</p>
+                    <p class="package-price" data-base-price="700">From $1400</p>
+                    <select class="duration-selector">
+                        <option value="2">2 Days / 1 Night</option>
+                        <option value="3">3 Days / 2 Nights</option>
+                        <option value="4">Weekend Getaway</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <img src="park.jpg" alt="Central Park" class="package-image">
+                <div class="package-content">
+                    <h3 class="package-title">Central Park & Museum Mile</h3>
+                    <p>Stay at <b>The Plaza Hotel</b>. Includes bike rentals, Met tickets, and a horse-drawn carriage ride at sunset.</p>
+                    <p class="package-price" data-base-price="600">From $1200</p>
+                    <select class="duration-selector">
+                        <option value="2">2 Days / 1 Night</option>
+                        <option value="3">3 Days / 2 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <img src="times.jpg" alt="Times Square" class="package-image">
+                <div class="package-content">
+                    <h3 class="package-title">Broadway & Times Square</h3>
+                    <p>Stay at <b>The Knickerbocker Hotel</b>. Includes premium orchestra seats to a hit show and VIP access to observation decks.</p>
+                    <p class="package-price" data-base-price="800">From $1600</p>
+                    <select class="duration-selector">
+                        <option value="4">Weekend Getaway</option>
+                        <option value="3">3 Days / 2 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <img src="brooklyn.jpg" alt="Brooklyn Bridge" class="package-image">
+                <div class="package-content">
+                    <h3 class="package-title">Brooklyn & DUMBO Discovery</h3>
+                    <p>Stay at <b>1 Hotel Brooklyn Bridge</b>. Includes walking tour, pizza tasting, and sunset photography session.</p>
+                    <p class="package-price" data-base-price="650">From $1300</p>
+                    <select class="duration-selector">
+                        <option value="1">Day Tour</option>
+                        <option value="2">2 Days / 1 Night</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updatePrices() {
+                document.querySelectorAll('.duration-selector').forEach(select => {
+                    const days = parseInt(select.value);
+                    const priceElement = select.parentElement.querySelector('.package-price');
+                    const basePrice = parseInt(priceElement.getAttribute('data-base-price'));
+                    const totalPrice = basePrice * days;
+                    priceElement.textContent = `$${totalPrice}`;
+                });
+            }
+
+            document.querySelectorAll('.duration-selector').forEach(select => {
+                select.addEventListener('change', updatePrices);
+            });
+
+            updatePrices();
+
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const packageName = this.closest('.package-card').querySelector('.package-title').textContent;
+                    const duration = this.closest('.package-card').querySelector('select').value;
+                    window.location.href = `login.html?destination=${encodeURIComponent(`${packageName} - ${duration}`)}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

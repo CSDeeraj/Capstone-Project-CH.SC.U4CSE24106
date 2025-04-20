@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bali Paradise | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ecc71; 
+            --secondary: #3498db; 
+            --accent: #f1c40f; 
+            --dark: #34495e;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9;
+            color: var(--dark);
+            background-image: url('bali-bamboo.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            border: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .itinerary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .itinerary-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        .itinerary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .itinerary-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .card-content {
+            padding: 20px;
+            position: relative;
+            padding-bottom: 70px;
+        }
+
+        .itinerary-card h3 {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .itinerary-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 15px 0;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+        }
+
+        .btn {
+            display: block;
+            width: calc(100% - 30px);
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        .bali-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .itinerary-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Bali</h1>
+        <p class="subtitle">The Island of Gods Awaits Your Discovery</p>
+        
+        <div class="itinerary-container">
+            <div class="itinerary-card">
+                <img src="ubud.jpg" alt="Ubud">
+                <div class="card-content">
+                    <h3>Ubud Cultural Retreat</h3>
+                    <p>Immerse yourself in Bali's spiritual heart with visits to sacred temples, lush rice terraces, and traditional art markets.</p>
+                    <span class="bali-badge">Culture</span>
+                    <span class="bali-badge">Nature</span>
+                    <p class="price" id="price-days1">From $800</p>
+                    <select id="days1">
+                        <option value="1">3 Days / 2 Nights</option>
+                        <option value="2">5 Days / 4 Nights</option>
+                        <option value="3">7 Days / 6 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="nusa.jpg" alt="Nusa Penida">
+                <div class="card-content">
+                    <h3>Nusa Penida Adventure</h3>
+                    <p>Snorkel with manta rays, explore hidden beaches, and stand atop the iconic Kelingking Cliff.</p>
+                    <span class="bali-badge">Adventure</span>
+                    <span class="bali-badge">Marine Life</span>
+                    <p class="price" id="price-days2">From $900</p>
+                    <select id="days2">
+                        <option value="1">Day Trip</option>
+                        <option value="2">2 Days / 1 Night</option>
+                        <option value="3">3 Days / 2 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="semiyak.jpg" alt="Seminyak">
+                <div class="card-content">
+                    <h3>Seminyak Luxury Escape</h3>
+                    <p>Indulge in world-class dining, boutique shopping, and sunset cocktails at Bali's most stylish beach clubs.</p>
+                    <span class="bali-badge">Luxury</span>
+                    <span class="bali-badge">Beach</span>
+                    <p class="price" id="price-days3">From $850</p>
+                    <select id="days3">
+                        <option value="1">3 Days / 2 Nights</option>
+                        <option value="2">5 Days / 4 Nights</option>
+                        <option value="3">Weekend Getaway</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="uluwatu.jpg" alt="Uluwatu">
+                <div class="card-content">
+                    <h3>Uluwatu Cliffside Experience</h3>
+                    <p>Surf legendary breaks, witness the Kecak fire dance at sunset, and stay in stunning cliffside resorts.</p>
+                    <span class="bali-badge">Surfing</span>
+                    <span class="bali-badge">Cliff Views</span>
+                    <p class="price" id="price-days4">From $750</p>
+                    <select id="days4">
+                        <option value="1">3 Days / 2 Nights</option>
+                        <option value="2">5 Days / 4 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="canaggu.jpg" alt="Canggu">
+                <div class="card-content">
+                    <h3>Canggu Surf & Wellness</h3>
+                    <p>Balance surf sessions at Batu Bolong with yoga classes and healthy eats at Bali's hippest beach town.</p>
+                    <span class="bali-badge">Surf</span>
+                    <span class="bali-badge">Wellness</span>
+                    <p class="price" id="price-days5">From $700</p>
+                    <select id="days5">
+                        <option value="1">3 Days / 2 Nights</option>
+                        <option value="2">5 Days / 4 Nights</option>
+                        <option value="3">7 Days / 6 Nights</option>
+                    </select>
+                    <a href="login.html" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePrice(id, basePrice) {
+            let select = document.getElementById(id);
+            let priceTag = document.getElementById("price-" + id);
+            select.addEventListener("change", function() {
+                let totalPrice = basePrice * parseInt(select.value);
+                priceTag.innerText = "From $" + totalPrice;
+            });
+        }
+
+        window.onload = function() {
+            updatePrice("days1", 800);
+            updatePrice("days2", 900);
+            updatePrice("days3", 850);
+            updatePrice("days4", 750);
+            updatePrice("days5", 700);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egypt Travel Guide | Land of Pharaohs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&family=Marcellus&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --sand: #e6d5a8;
+            --papyrus: #f5e7c1;
+            --lapis: #26619c;
+            --earth: #8b4513;
+            --blood: #8b0000;
+            --dark: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Marcellus', serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--sand);
+            color: var(--dark);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23d4af3780" d="M30,10 Q50,5 70,10 L90,30 Q95,50 90,70 L70,90 Q50,95 30,90 L10,70 Q5,50 10,30 Z"/></svg>');
+            background-size: 100px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(to bottom, var(--papyrus), white);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-radius: 5px;
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: linear-gradient(90deg, var(--gold), var(--lapis), var(--blood), var(--earth), var(--gold));
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--earth);
+            margin-bottom: 10px;
+            font-family: 'Noto Sans Egyptian Hieroglyphs', 'Marcellus', serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            padding-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            right: 25%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+
+        p.subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--dark);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+            transition-delay: 0.2s;
+        }
+
+        .itinerary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .itinerary-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid var(--gold);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .itinerary-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--lapis), var(--blood), var(--earth));
+        }
+
+        .itinerary-card:nth-child(1) { transition-delay: 0.1s; }
+        .itinerary-card:nth-child(2) { transition-delay: 0.2s; }
+        .itinerary-card:nth-child(3) { transition-delay: 0.3s; }
+        .itinerary-card:nth-child(4) { transition-delay: 0.4s; }
+        .itinerary-card:nth-child(5) { transition-delay: 0.5s; }
+        .itinerary-card:nth-child(6) { transition-delay: 0.6s; }
+
+        .itinerary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .itinerary-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--gold);
+            transition: transform 0.5s ease;
+        }
+
+        .itinerary-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .itinerary-card h3 {
+            color: var(--lapis);
+            font-family: 'Marcellus', serif;
+            margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 1px dashed var(--gold);
+            padding-bottom: 10px;
+        }
+
+        .itinerary-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--earth);
+            margin-top: 15px;
+            position: absolute;
+            bottom: 60px;
+            right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .price::before {
+            content: "Total: ";
+            font-weight: normal;
+        }
+
+        label {
+            font-size: 1rem;
+            display: block;
+            margin: 15px 0 8px;
+            color: var(--lapis);
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            background-color: var(--papyrus);
+            font-family: 'Marcellus', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: var(--lapis);
+        }
+
+        .btn {
+            display: block;
+            width: calc(100% - 30px);
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            padding: 12px;
+            background: linear-gradient(to right, var(--lapis), var(--earth));
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Marcellus', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to right, var(--earth), var(--blood));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+       
+        .hieroglyphic-border {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" viewBox="0 0 100 40"><text x="5" y="25" font-family="Noto Sans Egyptian Hieroglyphs" font-size="24">𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒𓃭𓃒</text></svg>');
+            background-repeat: repeat-x;
+            z-index: 100;
+            opacity: 0.7;
+        }
+
+        
+        [data-scroll="in"] h1,
+        [data-scroll="in"] .subtitle,
+        [data-scroll="in"] .itinerary-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .itinerary-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hieroglyphic-border"></div>
+
+    <div class="container" data-scroll>
+        <h1>𓋴𓂧𓏏𓏭𓇯 Welcome to Egypt</h1>
+        <p class="subtitle">Explore the land of Pharaohs! From the Pyramids of Giza to the Nile River, experience ancient wonders and timeless beauty.</p>
+
+        <div class="itinerary-container">
+            <div class="itinerary-card">
+                <img src="giza.jpg" alt="Pyramids of Giza">
+                <div class="card-content">
+                    <h3>𓃭 Pyramids of Giza</h3>
+                    <p>Stay at <b>Pyramid View Hotel</b>, enjoy a camel ride and explore the Great Sphinx.</p>
+                    <div class="price" data-base-price="3800">$3800</div>
+                    <label for="days1">Choose number of days:</label>
+                    <select id="days1" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="nile.jpg" alt="Nile River Cruise">
+                <div class="card-content">
+                    <h3>𓈖 Nile River Cruise</h3>
+                    <p>Stay at <b>Nile Grand Resort</b>, experience a luxury cruise along the Nile.</p>
+                    <div class="price" data-base-price="4200">$4200</div>
+                    <label for="days2">Choose number of days:</label>
+                    <select id="days2" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="valley.jpg" alt="Luxor Temples">
+                <div class="card-content">
+                    <h3>𓊹 Luxor & Valley of the Kings</h3>
+                    <p>Stay at <b>Royal Pharaoh Inn</b>, visit ancient tombs and explore Luxor's temples.</p>
+                    <div class="price" data-base-price="3500">$3500</div>
+                    <label for="days3">Choose number of days:</label>
+                    <select id="days3" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="cairo.jpg" alt="Cairo City">
+                <div class="card-content">
+                    <h3>𓊪 Cairo City Tour</h3>
+                    <p>Stay at <b>Golden Nile Hotel</b>, explore the Egyptian Museum and Khan El Khalili bazaar.</p>
+                    <div class="price" data-base-price="3100">$3100</div>
+                    <label for="days4">Choose number of days:</label>
+                    <select id="days4" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="redsea.jpg" alt="Red Sea">
+                <div class="card-content">
+                    <h3>𓈌 Red Sea Beach Resorts</h3>
+                    <p>Stay at <b>Hurghada Bay Hotel</b>, relax on beautiful beaches and enjoy diving.</p>
+                    <div class="price" data-base-price="4000">$4000</div>
+                    <label for="days5">Choose number of days:</label>
+                    <select id="days5" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="alex.jpg" alt="Alexandria City">
+                <div class="card-content">
+                    <h3>𓂋 Alexandria & Mediterranean Coast</h3>
+                    <p>Stay at <b>Royal Alexandria Hotel</b>, visit the Citadel and Bibliotheca Alexandrina.</p>
+                    <div class="price" data-base-price="3300">$3300</div>
+                    <label for="days6">Choose number of days:</label>
+                    <select id="days6" class="days-selector">
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                    </select>
+                    <a href="#" class="btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation implementation
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) * 0.75
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.setAttribute('data-scroll', 'in');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Initialize - check elements on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimation();
+            
+            // Set up price calculators for each card
+            const priceCalculators = document.querySelectorAll('.days-selector');
+            
+            priceCalculators.forEach(select => {
+                // Add event listener for changes
+                select.addEventListener('change', function() {
+                    const days = parseInt(this.value);
+                    const priceElement = this.closest('.itinerary-card').querySelector('.price');
+                    const basePrice = parseInt(priceElement.getAttribute('data-base-price'));
+                    const totalPrice = basePrice * days;
+                    
+                    // Add animation class
+                    priceElement.classList.add('price-update');
+                    
+                    // Update price after a slight delay for animation
+                    setTimeout(() => {
+                        priceElement.textContent = `$${totalPrice}`;
+                        priceElement.classList.remove('price-update');
+                    }, 150);
+                });
+                
+                // Trigger change event to set initial values
+                select.dispatchEvent(new Event('change'));
+            });
+        });
+    </script>
+</body>
+</html>

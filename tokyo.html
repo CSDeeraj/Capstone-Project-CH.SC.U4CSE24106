@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo Travel Guide | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c0392b;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #f5f0e1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --text-light: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            border: 3px solid var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            font-weight: 700;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--dark);
+        }
+
+        .itinerary-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .itinerary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .itinerary-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+
+        .itinerary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .itinerary-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .itinerary-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .itinerary-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+
+        .itinerary-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .hotel-name {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success);
+            margin: 15px 0;
+            display: block;
+        }
+
+        label {
+            font-size: 1rem;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            color: #555;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .card-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .japanese-decoration {
+            position: absolute;
+            font-family: 'Noto Serif JP', serif;
+            color: rgba(192, 57, 43, 0.1);
+            font-size: 5rem;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .intro-text {
+                font-size: 1rem;
+            }
+            
+            .japanese-decoration {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="tokyo.mp4" type="video/mp4">
+            <img src="tokyo-fallback.jpg" alt="Tokyo Background" style="width:100%;height:100%;object-fit:cover;">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <div class="container">
+        <div class="japanese-decoration" style="top: 20px; right: 20px;">東京</div>
+        <div class="japanese-decoration" style="bottom: 20px; left: 20px;">日本</div>
+        
+        <h1>Welcome to Tokyo</h1>
+        <p class="intro-text">Discover the vibrant culture, stunning skyline, and rich history of Japan's capital. Tokyo offers an unforgettable blend of traditional charm and modern innovation.</p>
+
+        <div class="itinerary-container">
+            <div class="itinerary-card">
+                <img src="shibuya.jpg" alt="Shibuya Crossing">
+                <h3>Shibuya & Shinjuku Tour</h3>
+                <p>Stay at <span class="hotel-name">Shibuya Grand Hotel</span>, explore the world's busiest pedestrian crossing, and experience Tokyo's electrifying nightlife.</p>
+                <div class="card-footer">
+                    <span class="tag">Urban</span>
+                    <span class="tag">Nightlife</span>
+                    <p class="price" id="price-days1">Starts from $1200</p>
+                    <label for="days1">Duration:</label>
+                    <select id="days1">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="redirectToLogin('Shibuya & Shinjuku Tour')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="sensoji.jpg" alt="Sensoji Temple">
+                <h3>Asakusa & Sensoji Temple</h3>
+                <p>Stay at <span class="hotel-name">Tokyo Heritage Inn</span>, visit Tokyo's oldest temple, and stroll through traditional Nakamise shopping street.</p>
+                <div class="card-footer">
+                    <span class="tag">Cultural</span>
+                    <span class="tag">Historic</span>
+                    <p class="price" id="price-days2">Starts from $1000</p>
+                    <label for="days2">Duration:</label>
+                    <select id="days2">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="redirectToLogin('Asakusa & Sensoji Temple')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="mountfuji.jpg" alt="Mount Fuji">
+                <h3>Mount Fuji & Hakone</h3>
+                <p>Stay at <span class="hotel-name">Fuji View Resort</span>, enjoy breathtaking views of Japan's iconic mountain, and relax in therapeutic hot springs.</p>
+                <div class="card-footer">
+                    <span class="tag">Nature</span>
+                    <span class="tag">Relaxation</span>
+                    <p class="price" id="price-days3">Starts from $1500</p>
+                    <label for="days3">Duration:</label>
+                    <select id="days3">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="redirectToLogin('Mount Fuji & Hakone')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="itinerary-card">
+                <img src="akihabara.jpg" alt="Akihabara">
+                <h3>Akihabara Tech & Anime</h3>
+                <p>Stay at <span class="hotel-name">Otaku Inn</span>, explore the electronics district, and immerse yourself in Japan's pop culture and gaming scene.</p>
+                <div class="card-footer">
+                    <span class="tag">Anime</span>
+                    <span class="tag">Technology</span>
+                    <p class="price" id="price-days4">Starts from $1300</p>
+                    <label for="days4">Duration:</label>
+                    <select id="days4">
+                        <option value="1">2 Days / 1 Night</option>
+                        <option value="2">3 Days / 2 Nights</option>
+                        <option value="3">5 Days / 4 Nights</option>
+                    </select>
+                    <button class="btn" onclick="redirectToLogin('Akihabara Tech & Anime')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePrice(id, basePrice) {
+            const select = document.getElementById(id);
+            const priceTag = document.getElementById("price-" + id);
+            select.addEventListener("change", function() {
+                const totalPrice = basePrice * parseInt(select.value);
+                priceTag.innerText = "Starts from $" + totalPrice;
+            });
+        }
+
+        function redirectToLogin(destination) {
+            window.location.href = `login.html?destination=${encodeURIComponent(destination)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePrice("days1", 1200);
+            updatePrice("days2", 1000);
+            updatePrice("days3", 1500);
+            updatePrice("days4", 1300);
+            
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 100);
+
+            const video = document.querySelector('.video-background video');
+            if (video) {
+                video.addEventListener('error', function() {
+                    const fallbackImage = this.parentElement.querySelector('img');
+                    if (fallbackImage) {
+                        this.style.display = 'none';
+                        fallbackImage.style.display = 'block';
+                    }
+                });
+            }
+
+            const cards = document.querySelectorAll('.itinerary-card');
+            cards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
