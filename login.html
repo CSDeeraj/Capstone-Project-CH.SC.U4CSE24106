@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Elite Escape Travels</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00aa6c; 
+            --secondary: #0038a8; 
+            --accent: #fccc0a; 
+            --light: #f5f5f5;
+            --dark: #1a1a1a;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 170, 108, 0.2), rgba(0, 170, 108, 0.1)), 
+                        url('loginback.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .container { 
+            width: 90%;
+            max-width: 450px; 
+            padding: 40px; 
+            background: rgba(255, 255, 255, 0.95); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            border-radius: 15px; 
+            border-top: 5px solid var(--primary);
+            text-align: center; 
+            position: relative;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin: 15px auto;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        input { 
+            width: 100%; 
+            padding: 15px 15px 15px 45px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 170, 108, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .btn { 
+            display: inline-block; 
+            width: 100%;
+            padding: 15px; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover { 
+            background: #008a56;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 170, 108, 0.3);
+        }
+
+        .destination-banner {
+            background: var(--secondary);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .forgot-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+                width: 85%;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Your Booking</h1>
+        
+        <div id="destination-banner" class="destination-banner" style="display: none;">
+            <i class="fas fa-map-marker-alt"></i> Booking: <span id="booking-destination"></span>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <span class="input-icon"><i class="fas fa-user"></i></span>
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            
+            <div class="input-group">
+                <span class="input-icon"><i class="fas fa-lock"></i></span>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            
+            <div class="input-group">
+                <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            
+            <div class="input-group">
+                <span class="input-icon"><i class="fas fa-city"></i></span>
+                <input type="text" id="city" placeholder="Your City" required>
+            </div>
+            
+            <button type="submit" class="btn">
+                <i class="fas fa-paper-plane"></i> Proceed to Book
+            </button>
+        </form>
+        
+        <a href="#" class="forgot-link">Forgot password?</a>
+    </div>
+
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get('destination');
+            
+            if (destination) {
+                const banner = document.getElementById('destination-banner');
+                document.getElementById('booking-destination').textContent = decodeURIComponent(destination);
+                banner.style.display = 'inline-block';
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('email').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const urlParams = new URLSearchParams(window.location.search);
+            const destination = urlParams.get('destination');
+            
+            if (username && password && email && city) {
+                // Store user session in localStorage for index.html
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                localStorage.setItem('city', city);
+                
+                // Store booking if coming from a package
+                if (destination) {
+                    let bookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
+                    bookings.push({
+                        package: decodeURIComponent(destination),
+                        date: new Date().toLocaleDateString(),
+                        status: "Confirmed"
+                    });
+                    localStorage.setItem('userBookings', JSON.stringify(bookings));
+                }
+                
+            
+                window.location.href = 'index.html';
+            } else {
+                alert('Please fill in all fields to continue your booking');
+            }
+        });
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('.input-icon').style.color = '#00aa6c';
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.querySelector('.input-icon').style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>
